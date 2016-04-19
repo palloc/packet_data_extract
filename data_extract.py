@@ -51,4 +51,4 @@ if __name__ == "__main__":
 #    export_mac_src(packet_data,output_name)
 #    export_protocol(packet_data,output_name)
 #    export_mac_dst(packet_data,output_name)
-
+    export_data(packet_data,output_name)

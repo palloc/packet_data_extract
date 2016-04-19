@@ -4,6 +4,7 @@ from scapy.all import *
 def show_all(packet):
     for i in packet:
         print packet.show()
+        
 #export source mac address
 def export_mac_src(packet,output):
     file = open(output,'w')
@@ -24,12 +25,24 @@ def export_mac_dst(packet,output):
 def export_ip_src(packet,output):
     file = open(output,'w')
     s = ""
-    for i in pacekt:
+    for i in packet:
         try:
-            s += i.dst + '\n'
+            s += i[IP].src + '\n'
         except IndexError:
             s += "No IPLayer\n"
     file.write(s)
+
+#export destination ip address
+def export_ip_dst(pacekt,output):
+    file = open(output,'w')
+    s = ""
+    for i in packet:
+        try:
+            s += i[IP].dst + '\n'
+        except IndexError:
+            s += "No IPLayer\n"
+    file.write(s)
+        
     
 #export protocol number
 def export_protocol(packet,output):

@@ -31,6 +31,7 @@ def export_protocol(packet,output):
             s += "L2 packet\n"
     file.write(s)
 
+#export packet's data    
 def export_data(packet,output):
     file = open(output,'w')
     s = ""

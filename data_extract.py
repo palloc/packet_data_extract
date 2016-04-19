@@ -12,6 +12,7 @@ def export_mac_src(packet,output):
     for i in packet:
         s += i.src + '\n'
     file.write(s)
+    file.close()
 
 #export destination mac address
 def export_mac_dst(packet,output):
@@ -20,6 +21,7 @@ def export_mac_dst(packet,output):
     for i in packet:
         s += i.dst + '\n'
     file.write(s)
+    file.close()
 
 #export source ip address
 def export_ip_src(packet,output):
@@ -31,6 +33,7 @@ def export_ip_src(packet,output):
         except IndexError:
             s += "No IPLayer\n"
     file.write(s)
+    file.close()
 
 #export destination ip address
 def export_ip_dst(pacekt,output):
@@ -42,8 +45,8 @@ def export_ip_dst(pacekt,output):
         except IndexError:
             s += "No IPLayer\n"
     file.write(s)
-        
-    
+    file.close()
+       
 #export protocol number
 def export_protocol(packet,output):
     file = open(output,'w')
@@ -54,6 +57,7 @@ def export_protocol(packet,output):
         except AttributeError:
             s += "L2 packet\n"
     file.write(s)
+    file.close()
 
 #export packet's data    
 def export_data(packet,output):
@@ -65,6 +69,7 @@ def export_data(packet,output):
         except AttributeError:
             s += "NoData" + '\n'
     file.write(s)
+    file.close()
     
 if __name__ == "__main__":
     packet_data = rdpcap("data/sample1.pcap")

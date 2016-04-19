@@ -36,7 +36,7 @@ def export_ip_src(packet,output):
     file.close()
 
 #export destination ip address
-def export_ip_dst(pacekt,output):
+def export_ip_dst(packet,output):
     file = open(output,'w')
     s = ""
     for i in packet:
@@ -81,4 +81,6 @@ if __name__ == "__main__":
 #    export_mac_src(packet_data,output_name)
 #    export_protocol(packet_data,output_name)
 #    export_mac_dst(packet_data,output_name)
-    export_data(packet_data,output_name)
+#    export_data(packet_data,output_name)
+#    export_ip_src(packet_data,output_name)
+    export_ip_dst(packet_data,output_name)

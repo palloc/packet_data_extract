@@ -4,6 +4,18 @@ from scapy.all import *
 def show_all(packet):
     for i in packet:
         print packet.show()
+
+#export arrived time    
+def export_time(packet,output):
+    file = open(output,'w')
+    s = ""
+    for i in packet:
+        try:
+            s += str(i.time) + '\n'
+        except AttributeError:
+            s += "No time" + '\n'
+    file.write(s)
+    file.close()
         
 #export source mac address
 def export_mac_src(packet,output):
@@ -97,4 +109,5 @@ if __name__ == "__main__":
 #    export_data(packet_data,output_name)
 #    export_ip_src(packet_data,output_name)
 #    export_ip_dst(packet_data,output_name)
-    export_ttl(packet_data,output_name)
+#    export_ttl(packet_data,output_name)
+    export_time(packet_data,output_name)

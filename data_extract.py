@@ -31,7 +31,15 @@ def export_protocol(packet,output):
             s += "L2 packet\n"
     file.write(s)
 
-
+def export_data(packet,output):
+    file = open(output,'w')
+    s = ""
+    for i in packet:
+        try:
+            s += i.load + '\n'
+        except AttributeError:
+            s += "NoData" + '\n'
+    file.write(s)
     
 if __name__ == "__main__":
     packet_data = rdpcap("data/sample1.pcap")
@@ -42,5 +50,5 @@ if __name__ == "__main__":
 #    packet_data = rdpcap(f_name)
 #    export_mac_src(packet_data,output_name)
 #    export_protocol(packet_data,output_name)
-    export_mac_dst(packet_data,output_name)
+#    export_mac_dst(packet_data,output_name)
 

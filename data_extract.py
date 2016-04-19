@@ -46,7 +46,19 @@ def export_ip_dst(packet,output):
             s += "No IPLayer\n"
     file.write(s)
     file.close()
-       
+
+#export ttl
+def export_ttl(packet,output):
+    file = open(output,'w')
+    s = ""
+    for i in packet:
+        try:
+            s += str(i[IP].ttl) + '\n'
+        except IndexError:
+            s += "No IPLayer\n"
+    file.write(s)
+    file.close()
+    
 #export protocol number
 def export_protocol(packet,output):
     file = open(output,'w')
@@ -55,7 +67,7 @@ def export_protocol(packet,output):
         try:
             s += str(i.proto) + '\n'
         except AttributeError:
-            s += "L2 packet\n"
+            s += "No IPLayer\n"
     file.write(s)
     file.close()
 
@@ -70,7 +82,8 @@ def export_data(packet,output):
             s += "NoData" + '\n'
     file.write(s)
     file.close()
-    
+
+
 if __name__ == "__main__":
     packet_data = rdpcap("data/sample1.pcap")
     output_name = "data/test"
@@ -83,4 +96,5 @@ if __name__ == "__main__":
 #    export_mac_dst(packet_data,output_name)
 #    export_data(packet_data,output_name)
 #    export_ip_src(packet_data,output_name)
-    export_ip_dst(packet_data,output_name)
+#    export_ip_dst(packet_data,output_name)
+    export_ttl(packet_data,output_name)

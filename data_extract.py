@@ -9,9 +9,15 @@ def export_mac_src(packet,output):
     file = open(output,'w')
     s = ""
     for i in packet:
-        str += i.src + '\n'
+        s += i.src + '\n'
     file.write(s)
 
+def export_mac_dst(packet,output):
+    file = open(output,'w')
+    s = ""
+    for i in packet:
+        s += i.dst + '\n'
+    file.write(s)
 def export_protocol(packet,output):
     file = open(output,'w')
     s = ""
@@ -21,6 +27,7 @@ def export_protocol(packet,output):
         except AttributeError:
             s += "L2 packet\n"
     file.write(s)
+
 
     
 if __name__ == "__main__":

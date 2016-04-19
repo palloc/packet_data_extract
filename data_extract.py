@@ -129,19 +129,8 @@ def export_data(packet,output):
 
 
 if __name__ == "__main__":
-    packet_data = rdpcap("data/sample1.pcap")
-    output_name = "data/test"
-
-#    f_name = raw_input("enter pcap file name:")
-#    output_name = raw_input("enter output file name:")
-#    packet_data = rdpcap(f_name)
-#    export_mac_src(packet_data,output_name)
-#    export_protocol(packet_data,output_name)
-#    export_mac_dst(packet_data,output_name)
-#    export_data(packet_data,output_name)
-#    export_ip_src(packet_data,output_name)
-#    export_ip_dst(packet_data,output_name)
-#    export_ttl(packet_data,output_name)
-#    export_time(packet_data,output_name)
-#    export_dport(packet_data,output_name)
-    export_sport(packet_data,output_name)
+    f_name = "data/" + raw_input("enter pcap file name:")
+    output_name = "result/" + raw_input("enter output file name:")
+    pcap = rdpcap(f_name)
+    export_time(pcap,output_name)
+    

@@ -16,7 +16,7 @@ def export_time(packet,output):
             s += "No time" + '\n'
     file.write(s)
     file.close()
-        
+
 #export source mac address
 def export_mac_src(packet,output):
     file = open(output,'w')
@@ -83,6 +83,22 @@ def export_protocol(packet,output):
     file.write(s)
     file.close()
 
+# export destination port
+def export_dport(packet,output):
+    file = open(output,'w')
+    s = ""
+    for i in packet:
+        try:
+            #UDP
+            if i[IP].proto == 17:
+                s += str(i[UDP].dport) + '\n'
+            else:
+                s += str(i[TCP].dport) + '\n'
+        except IndexError:
+            s += "No IPLayer\n"
+    file.write(s)
+    file.close()
+
 #export packet's data    
 def export_data(packet,output):
     file = open(output,'w')
@@ -110,4 +126,5 @@ if __name__ == "__main__":
 #    export_ip_src(packet_data,output_name)
 #    export_ip_dst(packet_data,output_name)
 #    export_ttl(packet_data,output_name)
-    export_time(packet_data,output_name)
+#    export_time(packet_data,output_name)
+    export_dport(packet_data,output_name)

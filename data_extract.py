@@ -20,6 +20,17 @@ def export_mac_dst(packet,output):
         s += i.dst + '\n'
     file.write(s)
 
+#export source ip address
+def export_ip_src(packet,output):
+    file = open(output,'w')
+    s = ""
+    for i in pacekt:
+        try:
+            s += i.dst + '\n'
+        except IndexError:
+            s += "No IPLayer\n"
+    file.write(s)
+    
 #export protocol number
 def export_protocol(packet,output):
     file = open(output,'w')

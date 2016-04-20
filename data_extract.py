@@ -132,5 +132,7 @@ if __name__ == "__main__":
     f_name = "data/" + raw_input("enter pcap file name:")
     output_name = "result/" + raw_input("enter output file name:")
     pcap = rdpcap(f_name)
-    export_time(pcap,output_name)
+    #export_hoge(pcap,output_name)
+
+    print "complete!"
     

@@ -1,4 +1,8 @@
+import logging
+logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
+import sys
+
 
 #show all packets
 def show_all(packet):
@@ -91,9 +95,11 @@ def export_dport(packet,output):
         try:
             #UDP
             if i[IP].proto == 17:
-                s += str(i[UDP].dport) + '\n'
+                s += str(i[UDP].dport) + ','
+                s += str(i[UDP].sport) + '\n'
             else:
-                s += str(i[TCP].dport) + '\n'
+                s += str(i[TCP].dport) + ','
+                s += str(i[TCP].sport) + '\n'
         except IndexError:
             s += "No IPLayer\n"
     file.write(s)
@@ -125,14 +131,63 @@ def export_data(packet,output):
         except AttributeError:
             s += "NoData" + '\n'
     file.write(s)
+
     file.close()
 
-
 if __name__ == "__main__":
+    #input pcap file name
     f_name = "data/" + raw_input("enter pcap file name:")
+    #input output file name
     output_name = "result/" + raw_input("enter output file name:")
-    pcap = rdpcap(f_name)
-    #export_hoge(pcap,output_name)
 
-    print "complete!"
+    #read pcapfile
+    pcap = rdpcap(f_name)
+
+    #export data
+    if sys.argv[1] == "data":
+        export_data(pcap,output_name)
+
+    #export source port
+    elif sys.argv[1] == "sport":
+        export_sport(pcap,output_name)
+
+    #export destination port
+    elif sys.argv[1] == "dport":
+        export_dport(pcap,output_name)
+
+    #export protocol
+    elif sys.argv[1] == "protocol":
+        export_protocol(pcap,output_name)
+
+    #export ttl
+    elif sys.argv[1] == "ttl":
+        export_ttl(pcap,output_name)
+
+    #export source ip address
+    elif sys.argv[1] == "src":
+        export_src(pcap,output_name)
+
+    #export destination ip address
+    elif sys.argv[1] == "dst":
+        export_dst(pcap,output_name)
+
+    #export source mac address
+    elif sys.argv[1] == "mac_src":
+        export_mac_src(pcap,output_name)
+
+    #export destination mac address
+    elif sys.argv[1] == "mac_dst":
+        export_mac_dst(pcap,output_name)
+
+    #export time of arrival
+    elif sys.argv[1] == "time":
+        export_time(pcap,output_name)
+
+    #export all packets detail
+    elif sys.argv[1] == "all":
+        export_show_all(pcap,output_name)
+
+    else:
+        print "wrong argument..."
+    print "finish program!"
     

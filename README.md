@@ -1,6 +1,6 @@
 # Packet data extractor
 This program can extract packet's IPaddress, MACaddress, port, ttl, time and data.
-You mast use python2.
+You must use python2.
 
 ## How to use?
 
